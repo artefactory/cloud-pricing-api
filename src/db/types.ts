@@ -26,3 +26,14 @@ export type Price = {
   termOfferingClass?: string;
   description?: string;
 };
+
+export type Emission = {
+  emissionHash: string;
+  unit: string;
+  CO2e: string;
+  effectiveDateStart: string;
+  effectiveDateEnd?: string;
+  startUsageAmount?: string;
+  endUsageAmount?: string;
+  description?: string;
+}

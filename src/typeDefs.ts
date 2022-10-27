@@ -18,6 +18,17 @@ const typeDefs = gql`
     termOfferingClass: String
   }
 
+  type Emission {
+    emissionHash: String!
+    unit: String!
+    CO2e: String!
+    effectiveDateStart: String
+    effectiveDateEnd: String
+    startUsageAmount: String
+    endUsageAmount: String
+    description: String
+  }
+
   type Product {
     productHash: String!
     vendorName: String!
@@ -27,6 +38,7 @@ const typeDefs = gql`
     sku: String!
     attributes: [Attribute]
     prices(filter: PriceFilter): [Price]
+    emissions(filter: EmissionFilter): [Emission]
   }
 
   type Attribute {
@@ -59,6 +71,14 @@ const typeDefs = gql`
     termLength: String
     termPurchaseOption: String
     termOfferingClass: String
+  }
+
+  input EmissionFilter {
+    unit: String
+    description: String
+    description_regex: String
+    startUsageAmount: String
+    endUsageAmount: String
   }
 
   type Query {
