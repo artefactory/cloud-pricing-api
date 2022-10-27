@@ -9,6 +9,7 @@ export type Product = {
   productFamily: string;
   attributes: ProductAttributes;
   prices: Price[];
+  emissions: Emission[];
 };
 
 export type Price = {

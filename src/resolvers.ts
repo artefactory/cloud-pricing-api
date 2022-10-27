@@ -82,18 +82,12 @@ const getResolvers = <TContext>(
       return prices;
     },
     emissions: async (product: Product, args: EmissionsArgs): Promise<Emission[]> => {
-      const emission = {
-        emissionHash: 'sampleEmissionHash',
-        unit: 'kgeqCO2',
-        CO2e: '10',
-        effectiveDateStart: '2021-01-01',
-        effectiveDateEnd: '2021-12-31',
-        startUsageAmount: '0',
-        endUsageAmount: '100',
-        description: 'test',
-      };
 
-      return [emission];
+      const emissions = mingo
+        .find(product.emissions, transformFilter(args.filter))
+        .all() as Emission[];
+
+        return emissions;
     },
   },
   Price:
