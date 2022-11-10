@@ -21,7 +21,7 @@ const typeDefs = gql`
   type Emission {
     emissionHash: String!
     unit: String!
-    CO2e: String!
+    emissions: String!
     effectiveDateStart: String
     effectiveDateEnd: String
     startUsageAmount: String
