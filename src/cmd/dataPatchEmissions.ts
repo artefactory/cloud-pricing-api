@@ -77,7 +77,7 @@ const generateEmissionsData = () => {
     return JSON.stringify([{
         emissionHash: 'SampleEmissionHash',
         unit: 'kgeqCO2',
-        CO2e: Math.random() * 100,
+        emissions: Math.random() * 100,
         effectiveDateStart: '2020-01-01',
         effectiveDateEnd: '2024-12-31',
         startUsageAmount: 0,

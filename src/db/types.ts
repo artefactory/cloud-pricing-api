@@ -31,7 +31,7 @@ export type Price = {
 export type Emission = {
   emissionHash: string;
   unit: string;
-  CO2e: string;
+  emissions: string;
   effectiveDateStart: string;
   effectiveDateEnd?: string;
   startUsageAmount?: string;
