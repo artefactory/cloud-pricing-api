@@ -39,11 +39,8 @@ async function run(): Promise<void> {
             await client.query('COMMIT');
         }
 
-        // await setEmissionsUpdateSuccessful(client);
     } catch (e) {
         await client.query('ROLLBACK');
-
-        // await setEmissionsUpdateFailed(client);
 
         throw e;
     }
@@ -76,7 +73,7 @@ async function updateProductEmissions(client: PoolClient, productHash: string): 
 const generateEmissionsData = () => {
     return JSON.stringify([{
         emissionHash: 'SampleEmissionHash',
-        unit: 'kgeqCO2',
+        unit: 'kgCO2e',
         emissions: Math.random() * 100,
         effectiveDateStart: '2020-01-01',
         effectiveDateEnd: '2024-12-31',
