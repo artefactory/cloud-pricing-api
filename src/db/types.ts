@@ -9,6 +9,7 @@ export type Product = {
   productFamily: string;
   attributes: ProductAttributes;
   prices: Price[];
+  emissions: Emission[];
 };
 
 export type Price = {
@@ -30,7 +31,7 @@ export type Price = {
 export type Emission = {
   emissionHash: string;
   unit: string;
-  CO2e: string;
+  emissions: string;
   effectiveDateStart: string;
   effectiveDateEnd?: string;
   startUsageAmount?: string;

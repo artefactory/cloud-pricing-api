@@ -18,9 +18,10 @@ export async function createProductsTable(
         service text NOT NULL,
         "productFamily" text DEFAULT ''::text NOT NULL,
         attributes jsonb NOT NULL,
-        prices jsonb NOT NULL, 
+        prices jsonb NOT NULL,
+        emissions jsonb NOT NULL DEFAULT '[]'::jsonb,
         CONSTRAINT %I PRIMARY KEY("productHash")
-      )   
+      )
     `,
       tableName,
       `${tableName}_pkey`
@@ -72,7 +73,7 @@ export async function createStatsTable(
         total_runs bigint DEFAULT 0,
         ci_runs bigint DEFAULT 0,
         non_ci_runs bigint DEFAULT 0
-      )   
+      )
     `,
       tableName
     )
@@ -101,7 +102,7 @@ export async function createInstallsTable(
       (
         install_id uuid PRIMARY KEY NOT NULL,
         created_at timestamp DEFAUlT NOW() NOT NULL
-      )   
+      )
     `,
       tableName
     )
