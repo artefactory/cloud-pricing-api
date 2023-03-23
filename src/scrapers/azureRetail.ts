@@ -139,6 +139,7 @@ function parseProduct(productJson: ProductJson): Product {
       meterName: productJson.meterName,
     },
     prices: [],
+    emissions: [],
   };
 
   product.productHash = generateProductHash(product);

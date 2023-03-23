@@ -1,6 +1,6 @@
 import { IResolvers } from '@graphql-tools/utils';
 import mingo from 'mingo';
-import { Price, Product } from './db/types';
+import { Emission, Price, Product } from './db/types';
 import currency, { CURRENCY_CODES } from './utils/currency';
 import { findProducts } from './db/query';
 import { ApplicationOptions } from './app';
@@ -25,6 +25,10 @@ interface ProductsArgs {
 }
 
 interface PricesArgs {
+  filter: Filter;
+}
+
+interface EmissionsArgs {
   filter: Filter;
 }
 
@@ -76,6 +80,14 @@ const getResolvers = <TContext>(
       await convertCurrencies(prices);
 
       return prices;
+    },
+    emissions: async (product: Product, args: EmissionsArgs): Promise<Emission[]> => {
+
+      const emissions = mingo
+        .find(product.emissions, transformFilter(args.filter))
+        .all() as Emission[];
+
+        return emissions;
     },
   },
   Price:

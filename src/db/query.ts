@@ -1,6 +1,6 @@
 // In order to make upserting more efficient, prices in postgres are stored as a map of priceHash -> prices.
 import format from 'pg-format';
-import { Price, Product, ProductAttributes } from './types';
+import { Emission, Price, Product, ProductAttributes } from './types';
 import config from '../config';
 
 type AttributeFilter = {
@@ -10,7 +10,7 @@ type AttributeFilter = {
   value_regex?: string;
 };
 
-type ProductWithPriceMap = {
+type ProductWithPriceAndEmissionsMap = {
   productHash: string;
   sku: string;
   vendorName: string;
@@ -19,10 +19,11 @@ type ProductWithPriceMap = {
   productFamily: string;
   attributes: ProductAttributes;
   prices: { [priceHash: string]: Price[] };
+  emissions: { [emissionHash: string]: Emission[] };
 };
 
-function flattenPrices(p: ProductWithPriceMap): Product {
-  return { ...p, prices: Object.values(p.prices).flat() };
+function flattenPrices(p: ProductWithPriceAndEmissionsMap): Product {
+  return { ...p, prices: Object.values(p.prices).flat(), emissions: Object.values(p.emissions).flat() };
 }
 
 // eslint-disable-next-line import/prefer-default-export
@@ -53,7 +54,7 @@ export async function findProducts(
   }
 
   const response = await pool.query(sql);
-  const products = response.rows as ProductWithPriceMap[];
+  const products = response.rows as ProductWithPriceAndEmissionsMap[];
   return products.map((product) => flattenPrices(product));
 }
 
