@@ -191,6 +191,7 @@ function parseProduct(productJson: ProductJson, region: string): Product {
       resourceGroup: productJson.category.resourceGroup,
     },
     prices: [],
+    emissions: [],
   };
 
   product.productHash = generateProductHash(product);

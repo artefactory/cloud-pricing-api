@@ -9,6 +9,7 @@ export type Product = {
   productFamily: string;
   attributes: ProductAttributes;
   prices: Price[];
+  emissions: Emission[];
 };
 
 export type Price = {
@@ -26,3 +27,14 @@ export type Price = {
   termOfferingClass?: string;
   description?: string;
 };
+
+export type Emission = {
+  emissionHash: string;
+  unit: string;
+  emissions: string;
+  effectiveDateStart: string;
+  effectiveDateEnd?: string;
+  startUsageAmount?: string;
+  endUsageAmount?: string;
+  description?: string;
+}

@@ -207,6 +207,7 @@ function parseProduct(productJson: ProductJson) {
     sku: productJson.sku,
     attributes: productJson.attributes,
     prices: [],
+    emissions: [],
   };
 
   product.productHash = generateProductHash(product);
